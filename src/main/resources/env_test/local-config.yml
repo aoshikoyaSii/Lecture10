@@ -1,0 +1,16 @@
+environment:
+  intergrate:
+    url: http://automationpractice.com/index.php
+      eTitle: My Store
+        login: register@gmail.pl
+        accountname: Pinky Brain
+        password: hello123
+
+
+
+test:
+  url: http://automationpractice.com/index.php
+    eTitle: My Store
+      login: register@yahoo.com
+      password: hello123
+      accountname: Tom Jerry
