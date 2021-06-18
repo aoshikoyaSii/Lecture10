@@ -86,9 +86,8 @@ public class BasePage {
     }
 
     public void click(WebElement element) {
-        WebElement el = (element.isDisplayed() || element.isEnabled()) ? element : null;
-        initWaitsStart(el);
-        el.click();
+        initWaitsStart(element);
+        element.click();
     }
 
     public void mouseHover(WebElement element) {
