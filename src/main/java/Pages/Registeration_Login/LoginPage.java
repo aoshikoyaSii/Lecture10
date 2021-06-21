@@ -20,7 +20,7 @@ public class LoginPage extends BasePage {
     @FindBy(css="#email_create")
     private WebElement email_create;
 
-    @FindBy(css="#SubmitCreate")
+    @FindBy(id="SubmitCreate")
     private WebElement createAccountBtn;
 
     @FindBy(css=".form-group #email")
@@ -37,7 +37,7 @@ public class LoginPage extends BasePage {
         logger.info(">>>>>> initialize create account <<<<<< ");
         logger.info(">>>>>> enter email >>>>>>>>");
         sendKeys(email_create, email);
-        click(createAccountBtn);
+        click("SubmitCreate");
         logger.info(">>>>>> create account button clicked >>>>>>>>");
         return new RegistrationPage(getDriver());
     }
@@ -49,7 +49,7 @@ public class LoginPage extends BasePage {
         sendKeys(emailAdd,user.getEmail());
         logger.info(">>>>>> enter password >>>>>>>>");
         sendKeys(password,user.getPassword());
-        click(SignIn);
+        click("#SubmitLogin");
         logger.info(">>>>>> signin button clicked >>>>>>>>");
         return new ProductCart(getDriver());
     }

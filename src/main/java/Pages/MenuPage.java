@@ -32,7 +32,7 @@ public class MenuPage extends  BasePage{
 
 
     public LoginPage openLoginPage() {
-        click(signInBtn);
+        click("a.login");
         return new LoginPage(getDriver());
     }
 

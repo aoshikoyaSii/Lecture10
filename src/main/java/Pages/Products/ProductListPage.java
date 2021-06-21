@@ -27,7 +27,7 @@ public class ProductListPage extends BasePage {
 
     public ProductDetailsPage clickOnSelectedProduct(){
         logger.info(">>>>>> click on product randomly selected by our random product generator <<<<<<<");
-        click(name);
+        click("a.product-name");
         return new ProductDetailsPage(getDriver());
     }
 

@@ -96,10 +96,10 @@ public class RegistrationPage extends BasePage {
         logger.info(">>>>>> choose gender randomly <<<<<<<");
         if (user.getGender() == Gender.male) {
             logger.info(">>>>>> Male radio buttom checked <<<<<<<");
-            click(MrRadBtn);
+            click("#id_gender1");
         } else {
             logger.info(">>>>>> Female radio buttom checked <<<<<<<");
-            click(MrsRadBtn);
+            click("#id_gender2");
         }
         sendKeys(customerFirstname, user.getCustomerFirstname());
         sendKeys(customerLastname, user.getCustomerLastname());
@@ -114,7 +114,7 @@ public class RegistrationPage extends BasePage {
         sendKeys(textNote,user.getTextNote());
         sendKeys(phone, user.getPhone());
         sendKeys(futureAddress,user.getFutureAddress());
-        click(submitAccount);
+        click("#submitAccount");
         logger.info(">>>>>>> submit registration button clicked <<<<<<<");
         logger.info(">>>>>>> registration successfully done <<<<<<<<");
     }

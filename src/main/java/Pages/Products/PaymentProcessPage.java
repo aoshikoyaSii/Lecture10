@@ -17,19 +17,19 @@ public class PaymentProcessPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(css = ".bankwire")
+    @FindBy(className = ".bankwire")
     private WebElement payByWire;
 
-    @FindBy(css = ".cheque")
+    @FindBy(className = ".cheque")
     private WebElement payByCheck;
 
     @FindBy(xpath="//*[contains(text(),'I confirm my order')]")
     private WebElement iConfirmOrder;
 
-    @FindBy(xpath="//button[@name='processAddress']")
+    @FindBy(css="cart_navigation > button")
     private WebElement checkOutAfterLoginIn;
 
-    @FindBy(css="#uniform-cgv")
+    @FindBy(id="#uniform-cgv")
     private WebElement termAndCondition;
 
     @FindBy(css="button.standard-checkout")
@@ -37,7 +37,7 @@ public class PaymentProcessPage extends BasePage {
 
     public PaymentProcessPage paymentAdressValidationCheckOut(){
         logger.info(">>>>>>> proceed from payment address validation <<<<<<<");
-        click(checkOutAfterLoginIn);
+        click(".cart_navigation > button");
 
         return this;
     }
@@ -45,13 +45,13 @@ public class PaymentProcessPage extends BasePage {
     public PaymentProcessPage termsCondition(){
         logger.info(">>>>>>> accept terms and conditions <<<<<<<");
 
-        click(termAndCondition);
+        click("#uniform-cgv");
         return this;
     }
 
     public PaymentProcessPage shippingProceedCheckout(){
         logger.info(">>>>>>> proceed from shipping information validation <<<<<<<");
-        click(getProceedToChkOut2);
+        click("button.standard-checkout");
         return this;
     }
 
@@ -59,17 +59,17 @@ public class PaymentProcessPage extends BasePage {
         logger.info(">>>>>>> choose method of payment <<<<<<<");
         if (PaymentOptions.getSelectedPaymentOptions().equals(PaymentOptions.payByBankWire)) {
             logger.info(">>>>>>> pay by bank wire method choosen <<<<<<<");
-            click(payByWire);
+            click(".bankwire");
         } else {
             logger.info(">>>>>>> pay by bank check method choosen <<<<<<<");
-            click(payByCheck);
+            click(".cheque");
         }
         return this;
     }
 
     public PaymentProcessPage confirmPayment(){
         logger.info(">>>>>>> proceed to confirm the order <<<<<<<");
-        click(iConfirmOrder);
+        click(".cart_navigation > button");
         logger.info(">>>>>>>> order completed successfully <<<<<<<<<");
         return this;
     }

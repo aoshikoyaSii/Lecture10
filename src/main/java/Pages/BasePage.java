@@ -3,7 +3,9 @@ package Pages;
 import Pages.Listerner.WebListener;
 import Pages.Registeration_Login.RegistrationPage;
 
-import com.google.common.base.Function;
+//import com.google.common.base.Function;
+//import com.sun.tools.javac.util.Assert;
+//import org.apache.commons.lang3.text.StrSubstitutor;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Coordinates;
 import org.openqa.selenium.interactions.Locatable;
@@ -18,11 +20,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-import java.sql.DriverManager;
 import java.time.Duration;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 
 public class BasePage {
@@ -62,32 +62,30 @@ public class BasePage {
         element.sendKeys(text);
     }
 
-    WebElement initWaitsStart(WebElement elementIdentifier){
+    protected  WebElement initWaitsStart(String elementIdentifier){
+        By by = this.getElementLocator(elementIdentifier);
         logger.info(">>>>>>> fluent wait initialized <<<<<<<< ");
-        Wait<WebDriver> wait =
-                new FluentWait<WebDriver>(driver)
-                        .withTimeout(Duration.ofSeconds(30))
-                        .pollingEvery(Duration.ofSeconds(5))
-                        .ignoring(NoSuchElementException.class);
-        System.out.println(wait);
-        return wait.until(new Function<WebDriver, WebElement>()
-        {
-            public WebElement apply(WebDriver driver) {
-                WebElement locateTheEl = wait.until(ExpectedConditions.visibilityOf(elementIdentifier));
-
-                if(WrapsElement.class.isAssignableFrom(locateTheEl.getClass()))
-                    driver = ((WrapsDriver)((WrapsElement)locateTheEl).getWrappedElement()).getWrappedDriver();
-                else
-                    driver = ((WrapsDriver)locateTheEl).getWrappedDriver();
-
-                return locateTheEl;
-            }
-        });
+        try {
+            Wait<WebDriver> wait =
+                    new FluentWait<WebDriver>(driver)
+                            .withTimeout(Duration.ofSeconds(30))
+                            .pollingEvery(Duration.ofSeconds(5))
+                            .ignoring(NoSuchElementException.class);
+            this.el = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+            return this.el;
+        } catch (Exception e){
+            logger.error("timeout finding element with described location: {} ",elementIdentifier);
+            return null;
+        }
     }
 
-    public void click(WebElement element) {
-        initWaitsStart(element);
-        element.click();
+    private By getElementLocator(String elementIdentifier) {
+        return new By.ByCssSelector(elementIdentifier);
+    }
+
+
+    public void click(String element) {
+        this.initWaitsStart(element).click();
     }
 
     public void mouseHover(WebElement element) {
@@ -102,7 +100,6 @@ public class BasePage {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
 
 

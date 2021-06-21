@@ -26,7 +26,7 @@ public class ProductCart extends BasePage {
             logger.info(">>>>>>> currently trying for Null Exception Error <<<<<<<<<<");
             //fluentWaitMethod("a.standard-checkout");
             logger.info(">>>>>>> click proceed button to redirect to login page <<<<<<<<<<");
-            click(proceedToChkOut1);
+            click("a.standard-checkout");
             logger.info(">>>>>>> redirected to login page now <<<<<<<<<<");
         } catch (NullPointerException e){
             System.out.println(e.getMessage());

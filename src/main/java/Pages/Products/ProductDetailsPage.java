@@ -24,7 +24,7 @@ public class ProductDetailsPage extends BasePage {
     public ProductDetailsPage AddToCart(){
         logger.info(">>>>>>>>> click add product to cart button");
             //fluentWaitMethod("#add_to_cart > button");
-            click(addToCart);
+            click("#add_to_cart > button");
         return new ProductDetailsPage(getDriver());
     }
 
@@ -32,7 +32,7 @@ public class ProductDetailsPage extends BasePage {
     public ProductDetailsPage proceedToCheckout(){
         logger.info(">>>>>>>>> click proceed to checkout button");
         //fluentWaitMethod(".button-container .button-medium");
-        click(proceedToCheckout);
+        click(".button-container .button-medium");
         return new ProductDetailsPage(getDriver());
     }
 

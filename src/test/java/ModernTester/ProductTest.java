@@ -1,10 +1,7 @@
 package ModernTester;
 
 import Models.User;
-import Pages.Products.PaymentProcessPage;
-import Pages.Products.ProductCart;
-import Pages.Products.ProductDetailsPage;
-import Pages.Products.ProductListPage;
+import Pages.Products.*;
 import TestBaseFolder.TestBase;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -22,6 +19,7 @@ public class ProductTest extends TestBase {
     ProductDetailsPage productDetailsPage = new ProductDetailsPage(driver);
     ProductCart productCart = new ProductCart(driver);
     PaymentProcessPage paymentProcess = new PaymentProcessPage(driver);
+    AssertRegistrationConfirmation assertRegistrationConfirmation = new AssertRegistrationConfirmation(driver);
     User user = new UserFactory().registeringNewUser();
 
 
@@ -46,9 +44,8 @@ public class ProductTest extends TestBase {
                    .paymentsOptionSelector()
                     .confirmPayment();
 
+        assertRegistrationConfirmation.confirmText();
 
-        WebElement completed = driver.findElement(By.className("cheque-indent"));
-        assertThat(completed.getText(), equalTo(System.getProperty("ordercomplete")));
 
     }
 
