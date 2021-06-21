@@ -17,7 +17,7 @@ public class LoginTest extends TestBase {
 
     @Test
     public void LoginExistingUser(){
-        expectedSignInText = (user.getCustomerFirstname()+" "+ user.getCustomerLastname());
+        expectedSignInText = (System.getProperty("name")+" "+ System.getProperty("surname"));
         homePage.getMenu().openLoginPage().logInAsExistingUser(user);
         assertThat(homePage.getMenu().getUserName(),
                 equalTo(expectedSignInText));

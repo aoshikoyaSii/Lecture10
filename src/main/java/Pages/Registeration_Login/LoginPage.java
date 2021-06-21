@@ -17,19 +17,19 @@ public class LoginPage extends BasePage {
     }
     private User user;
 
-    @FindBy(css="#email_create")
+    @FindBy(id="email_create")
     private WebElement email_create;
 
     @FindBy(id="SubmitCreate")
     private WebElement createAccountBtn;
 
-    @FindBy(css=".form-group #email")
+    @FindBy(id="email")
     private WebElement emailAdd;
 
-    @FindBy(css=".form-group #passwd")
+    @FindBy(id="passwd")
     private WebElement password;
 
-    @FindBy(css="#SubmitLogin")
+    @FindBy(id="SubmitLogin")
     private WebElement SignIn;
 
 
@@ -46,9 +46,9 @@ public class LoginPage extends BasePage {
     public ProductCart logInAsExistingUser( User user){
         logger.info(">>>>>> initialize register as Existing user <<<<<< ");
         logger.info(">>>>>> enter email >>>>>>>>");
-        sendKeys(emailAdd,user.getEmail());
+        sendKeys(emailAdd, System.getProperty("email"));
         logger.info(">>>>>> enter password >>>>>>>>");
-        sendKeys(password,user.getPassword());
+        sendKeys(password,System.getProperty("password"));
         click("#SubmitLogin");
         logger.info(">>>>>> signin button clicked >>>>>>>>");
         return new ProductCart(getDriver());

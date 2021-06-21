@@ -72,6 +72,7 @@ public class BasePage {
                             .pollingEvery(Duration.ofSeconds(5))
                             .ignoring(NoSuchElementException.class);
             this.el = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+            logger.info("visibility of element located: {}", el);
             return this.el;
         } catch (Exception e){
             logger.error("timeout finding element with described location: {} ",elementIdentifier);

@@ -45,8 +45,6 @@ public class ProductTest extends TestBase {
                     .confirmPayment();
 
         assertRegistrationConfirmation.confirmText();
-
-
     }
 
 
