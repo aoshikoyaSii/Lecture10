@@ -27,30 +27,13 @@ public class MenuPage extends  BasePage{
         return userNameSurname.getText();
     }
 
-//    @FindBy(css = "#block_top_menu > ul > li:nth-child(1) > a")
-//    private WebElement woman;
-
-
     public LoginPage openLoginPage() {
         click("a.login");
         return new LoginPage(getDriver());
     }
 
-//    public MenuPage mouseHoverWoman() {
-//        logger.info("Mouse hover on Woman link");
-//        mouseHover(woman);
-//        return this;
-//    }
-//
-//    public MenuPage clickOnWoman(){
-//        click(woman);
-//        return  this;
-//    }
-
-
     @FindBy(css = ".product_list > li")
     private List<WebElement> allProducts;
-
 
         public ProductListPage getRandomProductFromListOfProduct() { //returns single product
             logger.info(">>>>>>>>> random product auntomatically picked");
